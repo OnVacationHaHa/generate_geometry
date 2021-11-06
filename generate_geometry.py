@@ -70,6 +70,14 @@ if __name__ == "__main__":
             else:
                 if not os.path.exists('./output'):
                     os.makedirs('./output')
+                del_list = os.listdir('./output')
+                for f in del_list:
+                    file_path = os.path.join('./output', f)
+                    if os.path.isfile(file_path):
+                        os.remove(file_path)
+                    elif os.path.isdir(file_path):
+                        import shutil
+                        shutil.rmtree(file_path)
                 GenerateLinkWithGeom('./input', './output', dic4nodes)
                 print("OK")
         else:
